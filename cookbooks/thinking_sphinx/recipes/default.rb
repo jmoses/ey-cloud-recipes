@@ -7,7 +7,7 @@ require 'pp'
 if ['solo', 'app', 'app_master'].include?(node[:instance_role])
 
   # be sure to replace "app_name" with the name of your application.
-  run_for_app("app_name") do |app_name, data|
+  run_for_app("ShotRunner") do |app_name, data|
   
     directory "/var/run/sphinx" do
       owner node[:owner_name]
@@ -43,6 +43,7 @@ if ['solo', 'app', 'app_master'].include?(node[:instance_role])
     end
 
     template "/data/#{app_name}/shared/config/sphinx.yml" do
+      # Bleck, need fancy sphinx things.
       owner node[:owner_name]
       group node[:owner_name]
       mode 0644
