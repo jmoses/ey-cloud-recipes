@@ -1,5 +1,5 @@
 check process sphinx_<%= @app_name %>_3312
-  with pidfile /data/<%= @app_name %>/shared/searchd.<%= @app_env %>.pid
+  with pidfile /data/<%= @app_name %>/shared/log/searchd.<%= @app_env %>.pid
   start program = "/root/bin/searchd ShotRunner rc forgiving_start" as uid <%= @user %> and gid <%= @user %>
   stop program = "/root/bin/searchd ShotRunner rc stop_if_running" as uid <%= @user %> and gid <%= @user %>
   group sphinx_<%= @app_name %>
