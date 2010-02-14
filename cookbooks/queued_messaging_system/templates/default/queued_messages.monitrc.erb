@@ -1,5 +1,5 @@
 check process queued_messages_<%= @app_name %>
-  with pidfile /data/<%= @app_name %>/current/email_reply_process.pid
+  with pidfile /data/<%= @app_name %>/current/log/queued_message_processor.rb.pid
   start program = "/root/bin/queued_messages <%= @app_name %> <%= @node[:environment][:framework_env] %> start" as uid <%= @user %> and gid <%= @user %>
   stop program = "/root/bin/queued_messages <%= @app_name %> <%= @node[:environment][:framework_env] %> stop" as uid <%= @user %> and gid <%= @user %>
   group queued_messages_<%= @app_name %>
