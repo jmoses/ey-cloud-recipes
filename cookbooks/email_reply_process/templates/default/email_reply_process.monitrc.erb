@@ -1,4 +1,4 @@
-check process delayed_job_<%= @app_name %>
+check process email_reply_<%= @app_name %>
   with pidfile /data/<%= @app_name %>/current/email_reply_process.pid
   start program = "/root/bin/email_reply <%= @app_name %> <%= @node[:environment][:framework_env] %> start" as uid <%= @user %> and gid <%= @user %>
   stop program = "/root/bin/email_reply <%= @app_name %> <%= @node[:environment][:framework_env] %> stop" as uid <%= @user %> and gid <%= @user %>
