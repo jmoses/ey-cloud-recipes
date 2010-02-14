@@ -13,7 +13,7 @@ end
 # uncomment to turn on thinking sphinx 
 require_recipe "thinking_sphinx"
 
-# require_recipe "delayed_job"
+require_recipe "delayed_job"
 
 # uncomment to turn on ultrasphinx 
 # require_recipe "ultrasphinx"
