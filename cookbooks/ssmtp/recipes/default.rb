@@ -14,7 +14,7 @@ if ['solo', 'app', 'app_master'].include?(node[:instance_role])
       owner node[:owner_name]
       group node[:owner_name]
       mode 0644
-      source "ssmtp.conf"
+      source "ssmtp.conf.erb"
       variables({
         :app_name => app_name,
         :user => node[:owner_name]
