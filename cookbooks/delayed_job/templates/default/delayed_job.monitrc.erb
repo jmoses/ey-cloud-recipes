@@ -1,5 +1,5 @@
 check process delayed_job_<%= @app_name %>
   with pidfile /data/<%= @app_name %>/shared/pids/job_runner.pid
-  start program = "/root/bin/searchd <%= @app_name %> <%= @node[:environment][:framework_env] %> start" as uid <%= @user %> and gid <%= @user %>
-  stop program = "/root/bin/searchd <%= @app_name %> <%= @node[:environment][:framework_env] %> stop" as uid <%= @user %> and gid <%= @user %>
+  start program = "/root/bin/delayed_job <%= @app_name %> <%= @node[:environment][:framework_env] %> start" as uid <%= @user %> and gid <%= @user %>
+  stop program = "/root/bin/delayed_job <%= @app_name %> <%= @node[:environment][:framework_env] %> stop" as uid <%= @user %> and gid <%= @user %>
   group delayed_job_<%= @app_name %>
