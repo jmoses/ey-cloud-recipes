@@ -15,6 +15,7 @@ require_recipe "thinking_sphinx"
 require_recipe "delayed_job"
 require_recipe "email_reply_process"
 require_recipe "ssmtp"
+require_recipe "queued_messaging_system"
 
 # uncomment to turn on ultrasphinx 
 # require_recipe "ultrasphinx"
