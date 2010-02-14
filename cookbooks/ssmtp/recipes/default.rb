@@ -20,6 +20,16 @@ if ['solo', 'app', 'app_master'].include?(node[:instance_role])
         :user => node[:owner_name]
       })
     end
+    
+    template "/etc/ssmtp/revaliases" do
+      owner node[:owner_name]
+      group node[:owner_name]
+      mode 0644
+      source "revaliases.erb"
+      variables({
+        :user => node[:owner_name]
+      })
+    end
   
   end
 end
