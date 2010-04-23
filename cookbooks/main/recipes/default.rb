@@ -4,6 +4,15 @@ execute "testing" do
   }
 end
 
+execute "set timezone to utc" do
+  command "ln -s /usr/share/zoneinfo/UTC /etc/localtime"
+  action :run
+
+  if ['solo', 'db_master', 'db'].include?(node[:instance_role])
+    notifies :restart, resource(:service => 'mysql'), :restart => :delayed
+  end
+end
+
 # uncomment if you want to run couchdb recipe
 # require_recipe "couchdb"
 
