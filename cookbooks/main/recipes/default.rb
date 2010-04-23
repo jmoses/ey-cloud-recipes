@@ -27,6 +27,13 @@ require_recipe "ssmtp"
 require_recipe "queued_messaging_system"
 require_recipe "scoutapp" if node[:environment][:framework_env]
 
+if %w( db_master ).include?(node[:instance_role])
+  file '/etc/.mysql.backups.yml' do
+    group 'deploy'
+    mode '660'
+  end
+end
+
 # uncomment to turn on ultrasphinx 
 # require_recipe "ultrasphinx"
 
