@@ -10,7 +10,7 @@ execute "restart-mysql" do
 end
 
 execute "set timezone to utc" do
-  command "ln -s /usr/share/zoneinfo/UTC /etc/localtime"
+  command "ln -nsf /usr/share/zoneinfo/UTC /etc/localtime"
   action :run
 
   if ['solo', 'db_master', 'db'].include?(node[:instance_role])
