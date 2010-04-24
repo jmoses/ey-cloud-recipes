@@ -4,6 +4,11 @@ execute "testing" do
   }
 end
 
+execute "restart-mysql" do
+  command "/etc/init.d/mysql restart"
+  action :nothing
+end
+
 execute "set timezone to utc" do
   command "ln -s /usr/share/zoneinfo/UTC /etc/localtime"
   action :run
@@ -11,11 +16,6 @@ execute "set timezone to utc" do
   if ['solo', 'db_master', 'db'].include?(node[:instance_role])
     notifies :run, resources(:execute => 'restart-mysql'), :delayed
   end
-end
-
-execute "restart-mysql" do
-  command "/etc/init.d/mysql restart"
-  action :nothing
 end
 
 # uncomment if you want to run couchdb recipe
