@@ -9,7 +9,7 @@ execute "set timezone to utc" do
   action :run
 
   if ['solo', 'db_master', 'db'].include?(node[:instance_role])
-    notifies :restart, resource(:service => 'mysql'), :restart => :delayed
+    notifies :restart, resources(:service => 'mysql'), :restart => :delayed
   end
 end
 
