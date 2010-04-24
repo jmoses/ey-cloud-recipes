@@ -9,8 +9,13 @@ execute "set timezone to utc" do
   action :run
 
   if ['solo', 'db_master', 'db'].include?(node[:instance_role])
-    notifies :restart, resources(:service => 'mysql'), :restart => :delayed
+    notifies :run, resources(:execute => 'restart-mysql'), :delayed
   end
+end
+
+execute "restart-mysql" do
+  command "/etc/init.d/mysql restart"
+  action :nothing
 end
 
 # uncomment if you want to run couchdb recipe
