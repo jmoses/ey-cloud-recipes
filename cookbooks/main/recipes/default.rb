@@ -11,6 +11,7 @@ end
 
 execute "set timezone to utc" do
   command "ln -nsf /usr/share/zoneinfo/UTC /etc/localtime"
+  not_if "ls -la /etc/localtime | grep -q UTC"
   action :run
 
   if ['solo', 'db_master', 'db'].include?(node[:instance_role])
