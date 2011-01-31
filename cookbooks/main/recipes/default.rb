@@ -19,15 +19,6 @@ execute "set timezone to utc" do
   end
 end
 
-if ['solo', 'app', 'app_master'].include?(node[:instance_role])
-  execute "ensure proper db encoding in config file" do
-    cwd "/data/ShotRunner/current"
-    environment "RAILS_ENV" => node[:environment][:framework_env]
-    command "rake db:add_encoding"
-    user 'deploy'
-    action :run
-  end
-end
 # uncomment if you want to run couchdb recipe
 # require_recipe "couchdb"
 
@@ -47,6 +38,20 @@ if %w( db_master ).include?(node[:instance_role])
   file '/etc/.mysql.backups.yml' do
     group 'deploy'
     mode '660'
+  end
+end
+
+if ['solo', 'app', 'app_master'].include?(node[:instance_role])
+  execute "ensure proper db encoding in config file" do
+    cwd "/data/ShotRunner/current"
+    environment "RAILS_ENV" => node[:environment][:framework_env]
+    command "rake db:add_encoding"
+    user 'deploy'
+    action :run
+  end
+
+  file "/data/ShotRunner/current/tmp/restart.txt" do
+    action :touch
   end
 end
 
