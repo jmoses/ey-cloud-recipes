@@ -48,10 +48,18 @@ if ['solo', 'app', 'app_master'].include?(node[:instance_role])
     command "rake db:add_encoding"
     user 'deploy'
     action :run
+
+    only_if do
+      File.exists?("/data/ShotRunner/current")
+    end
   end
 
   file "/data/ShotRunner/current/tmp/restart.txt" do
     action :touch
+
+    only_if do
+      File.exists?("/data/ShotRunner/current")
+    end
   end
 end
 
