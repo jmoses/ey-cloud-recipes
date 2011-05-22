@@ -43,22 +43,22 @@ end
 
 if ['solo', 'app', 'app_master'].include?(node[:instance_role])
   execute "ensure proper db encoding in config file" do
-    cwd "/data/ShotRunner/current"
+    cwd "/data/#{node[:application_name]}/current"
     environment "RAILS_ENV" => node[:environment][:framework_env]
     command "rake db:add_encoding"
     user 'deploy'
     action :run
 
     only_if do
-      File.exists?("/data/ShotRunner/current")
+      File.exists?("/data/#{node[:application_name]}/current")
     end
   end
 
-  file "/data/ShotRunner/current/tmp/restart.txt" do
+  file "/data/#{node[:application_name]}/current/tmp/restart.txt" do
     action :touch
 
     only_if do
-      File.exists?("/data/ShotRunner/current")
+      File.exists?("/data/#{node[:application_name]}/current")
     end
   end
 end

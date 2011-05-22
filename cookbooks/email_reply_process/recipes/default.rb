@@ -7,7 +7,7 @@ require 'pp'
 if ['solo', 'app', 'app_master'].include?(node[:instance_role])
 
   # be sure to replace "app_name" with the name of your application.
-  run_for_app("ShotRunner") do |app_name, data|
+  run_for_app(node[:application_name]) do |app_name, data|
     template "/etc/monit.d/email_reply_process.#{app_name}.monitrc" do
       source "email_reply_process.monitrc.erb"
       owner node[:owner_name]
