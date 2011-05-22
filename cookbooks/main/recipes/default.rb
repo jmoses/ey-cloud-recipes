@@ -1,3 +1,5 @@
+node.default[:application_name] = node[:applications].keys.find {|app| app =~ /shotrunner/i}
+
 execute "testing" do
   command %Q{
     echo "i ran at #{Time.now}" >> /root/cheftime
