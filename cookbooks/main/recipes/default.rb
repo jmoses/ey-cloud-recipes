@@ -1,4 +1,4 @@
-node.set[:application_name] = node[:applications].keys.find {|app| app =~ /shotrunner/i}
+node[:application_name] = node[:applications].keys.find {|app| app =~ /shotrunner/i}
 
 execute "testing" do
   command %Q{
