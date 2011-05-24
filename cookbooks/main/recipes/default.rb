@@ -52,7 +52,7 @@ if ['solo', 'app', 'app_master'].include?(node[:instance_role])
     action :run
 
     only_if do
-      File.exists?("/data/#{node[:application_name]}/current")
+      Gem.available?('bundler') && File.exists?("/data/#{node[:application_name]}/current")
     end
   end
 
