@@ -47,7 +47,7 @@ if ['solo', 'app', 'app_master'].include?(node[:instance_role])
   execute "ensure proper db encoding in config file" do
     cwd "/data/#{node[:application_name]}/current"
     environment "RAILS_ENV" => node[:environment][:framework_env]
-    command "rake db:add_encoding"
+    command "bundle exec rake db:add_encoding"
     user 'deploy'
     action :run
 
