@@ -1,7 +1,7 @@
 check process delayed_job_<%= @app_name %>
   with pidfile /data/<%= @app_name %>/shared/pids/job_runner.pid
-  start program = "cd /data/<%= @app_name%>/current && bundle exec script/delayed_job start <%= @node[:environment][:framework_env] %> start" as uid <%= @user %> and gid <%= @user %>
-  stop program = "cd /data/<%= @app_name%>/current && bundle exec script/delayed_job stop <%= @node[:environment][:framework_env] %> start" as uid <%= @user %> and gid <%= @user %>
+  start program = "/data/<%= @app_name %>/shared/bin/delayed_job.sh <%= @app_name %> start <%= @node[:environment][:framework_env] %> start" as uid <%= @user %> and gid <%= @user %>
+  stop program = "/data/<%= @app_name %>/shared/bin/delayed_job.sh <%= @app_name %> stop <%= @node[:environment][:framework_env] %> start" as uid <%= @user %> and gid <%= @user %>
   uid <%= @user %>
   gid <%= @user %>
   group delayed_job_<%= @app_name %>
