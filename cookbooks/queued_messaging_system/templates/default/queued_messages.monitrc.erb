@@ -3,3 +3,4 @@ check process queued_messages_<%= @app_name %>
   start program = "/data/<%= @app_name%>/shared/bin/queued_messaging_system.sh <%= @app_name %> start <%= @node[:environment][:framework_env] %>" as uid <%= @user %> and gid <%= @user %>
   stop program = "/data/<%= @app_name%>/shared/bin/queued_messaging_system.sh <%= @app_name %> stop <%= @node[:environment][:framework_env] %>" as uid <%= @user %> and gid <%= @user %>
   group queued_messages_<%= @app_name %>
+  group <%= @app_name %>
